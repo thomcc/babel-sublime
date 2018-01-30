@@ -2990,14 +2990,14 @@
 					<string>(?x)
   !(?!=)| # logical-not     right-to-left   right
   &amp;&amp;    | # logical-and     left-to-right   both
-  \|\|  | # logical-or      left-to-right   both</string>
+  \|\|    # logical-or      left-to-right   both</string>
 					<key>name</key>
 					<string>keyword.operator.logical.js</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(?x)
-  =(?!=)| # assignment      right-to-left   both</string>
+  =(?!=)  # assignment      right-to-left   both</string>
 					<key>name</key>
 					<string>keyword.operator.assignment.js</string>
 				</dict>
@@ -3014,7 +3014,7 @@
   \|=  | # assignment      right-to-left   both
   &lt;&lt;=  | # assignment      right-to-left   both
   &gt;&gt;=  | # assignment      right-to-left   both
-  &gt;&gt;&gt;= | # assignment      right-to-left   both</string>
+  &gt;&gt;&gt;=   # assignment      right-to-left   both</string>
 					<key>name</key>
 					<string>keyword.operator.assignment.augmented.js</string>
 				</dict>
@@ -3359,6 +3359,27 @@
 			<string>`</string>
 			<key>patterns</key>
 			<array>
+        <dict>
+          <key>begin</key>
+          <string>(?=\b(?:SELECT|DROP|INSERT|WITH|BEGIN|UPDATE|DELETE|CREATE|REPLACE|ALTER|ATTACH)\b)</string>
+          <key>end</key>
+          <string>(?=`)</string>
+          <key>name</key>
+          <string>meta.embedded.sql string.interpolated.js</string>
+          <key>contentName</key>
+          <string>source.sql.embedded.js</string>
+          <key>patterns</key>
+          <array>
+						<dict>
+							<key>include</key>
+							<string>#template-substitutions</string>
+						</dict>
+            <dict>
+              <key>include</key>
+              <string>source.sql</string>
+            </dict>
+          </array>
+        </dict>
 				<dict>
 					<key>include</key>
 					<string>#string-content</string>
@@ -3370,39 +3391,44 @@
 					<string>constant.character.escape.js</string>
 				</dict>
 				<dict>
-					<key>begin</key>
-					<string>\${</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.other.substitution.begin.js</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>}</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.other.substitution.end.js</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#expression</string>
-						</dict>
-					</array>
+					<key>include</key>
+					<string>#template-substitutions</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>.</string>
 					<key>name</key>
 					<string>string.interpolated.js</string>
+				</dict>
+			</array>
+		</dict>
+		<key>template-substitutions</key>
+		<dict>
+			<key>begin</key>
+			<string>\${</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.substitution.begin.js</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>}</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.substitution.end.js</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#expression</string>
 				</dict>
 			</array>
 		</dict>
@@ -3914,7 +3940,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?&lt;!\.)\b(exports|module(?:(\.)(children|exports|filename|id|loaded|parent)))?\b</string>
+					<string>(?&lt;!\.)\b(exports|module)(?:(\.)(children|exports|filename|id|loaded|parent))?\b</string>
 				</dict>
 				<dict>
 					<key>begin</key>
