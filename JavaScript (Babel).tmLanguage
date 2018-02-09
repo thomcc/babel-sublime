@@ -2023,13 +2023,18 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(?&lt;!\.)\b(for)\b</string>
+					<string>(?&lt;!\.)\b(for)\b(:?\s+(await)\b)?</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
 							<string>keyword.control.loop.js</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.flow.js</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -3004,17 +3009,18 @@
 				<dict>
 					<key>match</key>
 					<string>(?x)
-  %=   | # assignment      right-to-left   both
-  &amp;=   | # assignment      right-to-left   both
-  \*=  | # assignment      right-to-left   both
-  \+=  | # assignment      right-to-left   both
-  -=   | # assignment      right-to-left   both
-  /=   | # assignment      right-to-left   both
-  \^=  | # assignment      right-to-left   both
-  \|=  | # assignment      right-to-left   both
-  &lt;&lt;=  | # assignment      right-to-left   both
-  &gt;&gt;=  | # assignment      right-to-left   both
-  &gt;&gt;&gt;=   # assignment      right-to-left   both</string>
+  %=    | # assignment      right-to-left   both
+  &amp;=    | # assignment      right-to-left   both
+  \*=   | # assignment      right-to-left   both
+  \*\*= | # assignment      right-to-left   both
+  \+=   | # assignment      right-to-left   both
+  -=    | # assignment      right-to-left   both
+  /=    | # assignment      right-to-left   both
+  \^=   | # assignment      right-to-left   both
+  \|=   | # assignment      right-to-left   both
+  &lt;&lt;=   | # assignment      right-to-left   both
+  &gt;&gt;=   | # assignment      right-to-left   both
+  &gt;&gt;&gt;=    # assignment      right-to-left   both</string>
 					<key>name</key>
 					<string>keyword.operator.assignment.augmented.js</string>
 				</dict>
@@ -3058,6 +3064,7 @@
   \+\+ | # increment       n/a             right-or-left
   /    | # division        left-to-right   both
   %    | # modulus         left-to-right   both
+  \*\* | # exponentiation  left-to-right   both
   \*   | # multiplication  left-to-right   both
   \+   | # addition        left-to-right   both
   -      # subtraction     left-to-right   both</string>

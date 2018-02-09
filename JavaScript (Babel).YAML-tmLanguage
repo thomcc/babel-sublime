@@ -857,9 +857,10 @@ repository:
   literal-for:
     patterns:
     - name: meta.for.js
-      begin: (?<!\.)\b(for)\b
+      begin: (?<!\.)\b(for)\b(:?\s+(await)\b)?
       beginCaptures:
         '1': {name: keyword.control.loop.js}
+        '2': {name: keyword.control.flow.js}
       end: \)
       endCaptures:
         '0': {name: meta.brace.round.end.js}
@@ -919,17 +920,18 @@ repository:
     - name: keyword.operator.assignment.augmented.js
       match: >-
         (?x)
-          %=   | # assignment      right-to-left   both
-          &=   | # assignment      right-to-left   both
-          \*=  | # assignment      right-to-left   both
-          \+=  | # assignment      right-to-left   both
-          -=   | # assignment      right-to-left   both
-          /=   | # assignment      right-to-left   both
-          \^=  | # assignment      right-to-left   both
-          \|=  | # assignment      right-to-left   both
-          <<=  | # assignment      right-to-left   both
-          >>=  | # assignment      right-to-left   both
-          >>>=   # assignment      right-to-left   both
+          %=    | # assignment      right-to-left   both
+          &=    | # assignment      right-to-left   both
+          \*=   | # assignment      right-to-left   both
+          \*\*= | # assignment      right-to-left   both
+          \+=   | # assignment      right-to-left   both
+          -=    | # assignment      right-to-left   both
+          /=    | # assignment      right-to-left   both
+          \^=   | # assignment      right-to-left   both
+          \|=   | # assignment      right-to-left   both
+          <<=   | # assignment      right-to-left   both
+          >>=   | # assignment      right-to-left   both
+          >>>=    # assignment      right-to-left   both
 
     - name: keyword.operator.bitwise.js
       match: >-
@@ -965,6 +967,7 @@ repository:
           \+\+ | # increment       n/a             right-or-left
           /    | # division        left-to-right   both
           %    | # modulus         left-to-right   both
+          \*\* | # exponentiation  left-to-right   both
           \*   | # multiplication  left-to-right   both
           \+   | # addition        left-to-right   both
           -      # subtraction     left-to-right   both
