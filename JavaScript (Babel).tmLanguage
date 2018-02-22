@@ -3191,7 +3191,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(/)([gimy]*)</string>
+					<string>(?:(/)([gimy]*)|(\n))</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>1</key>
@@ -3203,6 +3203,11 @@
 						<dict>
 							<key>name</key>
 							<string>keyword.other.js</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>invalid.illegal.newline.js</string>
 						</dict>
 					</dict>
 					<key>name</key>

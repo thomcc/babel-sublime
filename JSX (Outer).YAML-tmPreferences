@@ -8,9 +8,9 @@ settings:
   # JSX in your documentation or template strings.
   decreaseIndentPattern: >-
     (?x)
-        ^\s*</[^>]+>$
+        ^\s*</[^>]*>$
       | ^\s*/>$
   increaseIndentPattern: >-
     (?x)
-        ^\s*<[^/>]+>$
-      | ^\s*<[^/>\s]+$
+        ^\s*<[^/>]*>$
+      | ^\s*<[^/>\s]*$

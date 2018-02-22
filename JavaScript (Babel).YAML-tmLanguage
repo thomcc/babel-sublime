@@ -1050,10 +1050,11 @@ repository:
           (?!/|\*|$)
       beginCaptures:
         '1': {name: punctuation.definition.string.begin.js}
-      end: (/)([gimy]*)
+      end: (?:(/)([gimy]*)|(\n))
       endCaptures:
         '1': {name: punctuation.definition.string.end.js}
         '2': {name: keyword.other.js}
+        '3': {name: invalid.illegal.newline.js}
       patterns:
       - include: source.regexp.js
 
