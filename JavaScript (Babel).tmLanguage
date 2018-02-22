@@ -2694,8 +2694,8 @@
 				<dict>
 					<key>begin</key>
 					<string>(?x)
-  (?:\b(static)\s+)?
-  (?:\b(async)\s+)?
+  (?:\b(static)\b\s*)?
+  (?:\b(async)\b\s*)?
   (?:(\*)\s*)?
   (?&gt;
     ((')((?&gt;[^'\\]|\\.)*)('))|
